@@ -14,7 +14,7 @@ ekf_filter_node:
     reset_on_time_jump: true
 
     odom_frame: odom
-    base_link_frame: base_link
+    base_link_frame: chassis
     world_frame: odom
 
     odom0: raw_odom

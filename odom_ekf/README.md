@@ -5,7 +5,7 @@ A Sensor Fusion packge to fuse `Odom Data` and `IMU Data`, to output a more clea
 | Input | Type | Description |
 |-------|------|-------------|
 | `~/odometry/raw` | nav_msgs/msg/Odometry | Raw Odometry Data from the robot |
-| `~/IMU/raw` | sensor_msgs/msg/Imu | Processed IMU data | 
+| `~/IMU/raw` | sensor_msgs/msg/Imu | Raw IMU data | 
 
 |Output | Type | Description |
 |-------|------|-------------|
