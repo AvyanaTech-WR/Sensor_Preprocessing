@@ -19,3 +19,6 @@ def generate_launch_description():
             remappings=[('/odometry/filtered', '/odom/processed')]
         )
     ])
+
+if __name__ == '__main__':
+    generate_launch_description()
