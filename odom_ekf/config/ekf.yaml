@@ -7,18 +7,17 @@ ekf_filter_node:
     transform_time_offset: 0.0
     transform_timeout: 0.0
     print_diagnostics: true
-    debug: false
+    debug: true
     debug_out_file: /home/debug/odom_ekf_debug.txt
     publish_tf: true
     publish_acceleration: false
     reset_on_time_jump: true
 
-    map_frame: map
     odom_frame: odom
     base_link_frame: chassis
     world_frame: odom
 
-    odom0: odom/raw
+    odom0: /odom/raw
     odom0_config: [ true, true, true,     #[x_pos   , y_pos    , z_pos,
                     false, false, false,  # roll    , pitch    , yaw,
                     true, true, true,     # x_vel   , y_vel    , z_vel, 
@@ -27,11 +26,11 @@ ekf_filter_node:
     odom0_queue_size: 2
     odom0_nodelay: false
     odom0_differential: false
-    odom0_relative: false
+    odom0_relative: true
     odom0_pose_rejection_threshold: 5.0
     odom0_twist_rejection_threshold: 1.0
 
-    imu0: IMU/raw
+    imu0: /IMU/raw
     imu0_config: [  false, false, false,  #[x_pos   , y_pos    , z_pos,
                     true,  true,  true,   # roll    , pitch    , yaw,
                     false, false, false,  # x_vel   , y_vel    , z_vel,
@@ -55,9 +54,6 @@ ekf_filter_node:
     acceleration_gains: [0.8, 0.0, 0.0, 0.0, 0.0, 0.9]
     deceleration_gains: [1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
 
-    # P
-    initial_estimate_covariance: [1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9]
-
     # Q
     process_noise_covariance: [0.05,   0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                               0.0,    0.05,   0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
@@ -77,3 +73,5 @@ ekf_filter_node:
     
     # R
     
+    # P
+    initial_estimate_covariance: [1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9]
