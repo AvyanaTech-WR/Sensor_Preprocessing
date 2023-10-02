@@ -1,36 +1,22 @@
 ekf_filter_node:
   ros__parameters:
     use_sim_time: true
-    frequency: 30.0 #will output, 60times a secong
+    frequency: 60.0 #will output, 120times a secong
     sensor_timeout: 0.1 #in seconds
     two_d_mode: true # true, if 2d operation else 3d
     transform_time_offset: 0.0
     transform_timeout: 0.0
     print_diagnostics: true
     debug: true
-    debug_out_file: /home/debug/odom_ekf_debug.txt
+    debug_out_file: /home/debug/imu_preprocessing_ekf_debug.txt
     publish_tf: true
     publish_acceleration: false
     reset_on_time_jump: true
 
-    odom_frame: odom
     base_link_frame: chassis
     world_frame: odom
 
-    odom0: /odom/raw
-    odom0_config: [ true, true, true,     #[x_pos   , y_pos    , z_pos,
-                    false, false, false,  # roll    , pitch    , yaw,
-                    true, true, true,     # x_vel   , y_vel    , z_vel, 
-                    false, false, true,   # roll_vel, pitch_vel, yaw_vel, z-axis movement, as in left or right
-                    false, false, false] # x_accel , y_accel  , z_accel]
-    odom0_queue_size: 2
-    odom0_nodelay: false
-    odom0_differential: false
-    odom0_relative: true
-    odom0_pose_rejection_threshold: 5.0
-    odom0_twist_rejection_threshold: 1.0
-
-    imu0: /IMU/processed
+    imu0: /IMU/raw_0
     imu0_config: [  false, false, false,  #[x_pos   , y_pos    , z_pos,
                     true,  true,  true,   # roll    , pitch    , yaw,
                     false, false, false,  # x_vel   , y_vel    , z_vel,
@@ -44,6 +30,21 @@ ekf_filter_node:
     imu0_twist_rejection_threshold: 0.8
     imu0_linear_acceleration_rejection_threshold: 0.8
     imu0_remove_gravitational_acceleration: true
+
+    imu1: /IMU/raw_1
+    imu1_config: [  false, false, false,  #[x_pos   , y_pos    , z_pos,
+                    true,  true,  true,   # roll    , pitch    , yaw,
+                    false, false, false,  # x_vel   , y_vel    , z_vel,
+                    true,  true,  true,   # roll_vel, pitch_vel, yaw_vel,
+                    true,  true,  true ]  # x_accel , y_accel  , z_accel]
+    imu1_queue_size: 7
+    imu1_nodelay: false
+    imu1_differential: false
+    imu1_relative: true
+    imu1_pose_rejection_threshold: 0.8
+    imu1_twist_rejection_threshold: 0.8
+    imu1_linear_acceleration_rejection_threshold: 0.8
+    imu1_remove_gravitational_acceleration: true
 
     use_control: false
     stamped_control: false # the input CMD_VEL is a geometry_msgs/Twist or geometry_msgs/TwistStamped message.
